@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="sidenav">
+         <div class="login-main-text">
+ <h1>Welcome</h1>
+ <h3>Please login to continue</h3>
+</div>
+</div>
+<div class="main">
+         <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="login-form">
+
+ <form action="{{ url_for("home")}}" method="post">
+ 	<div class="form-group p-3">
+ 		<div class="row">
+ 			<div class="col-12">
+<label for="Yourname">Your Name:</label>
+<input  class="form-control" type="text" id="Yourname" name="uname" placeholder="Yourname">
+</div>
+</div>
+</div>
+<div class="form-group p-3">
+	<div class="row">
+ 			<div class="col-12">
+<label for="Partner's name">Partner's Name:</label>
+<input  class="form-control" type="text" id="Partner's name" name="pname" placeholder="Partner's name">
+</div>
+</div>
+</div>
+<div class="row p-3">
+ 			<div class="col-12">
+<button class="btn btn-primary" type="submit">Login</button>
+</div>
+</div>
+
+<style type="text/css">.main-head{
+    height: 150px;
+    background: rgba(26, 26, 26,0.5);
+   
+}
+
+body{
+	overflow: hidden;
+}
+.sidenav {
+    height: 100%;
+    background: url('https://i.pinimg.com/originals/7c/1d/ab/7c1dab157f34e603487b5d0b057da448.gif');
+    overflow-x: hidden;
+    margin-top: 4.3%;
+    color:black;
+}
+
+
+.main {
+    padding: 0rem 1rem;
+
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 80%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: black;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}</style>
+{% endblock %}

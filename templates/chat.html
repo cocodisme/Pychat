@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+ {% if data %}
+ <div class="m-1 p-2">
+  <div id="log" >
+
+
+ <p class="msg_log"><span>{{ data.pname }} : </span>Hii {{data.uname}}</p>
+
+</div>
+
+ <div class="form-group fixed-bottom" style="width: 100%">
+ <form action="{{ url_for("home")}}" id="msg-form" method="post">
+  <div class="input-group mb-1">
+ 	<input  class="form-control" autocomplete="off" type="text" id="msg" name="msg" placeholder="Message @{{data.pname}}">
+  <div class="button">
+  <div class="input-group-append">
+  <button id="sub"class="btn btn-primary"type="submit">send</button>
+</div>
+   </div>
+</div>
+</form>
+
+</div>
+</div>
+{% endif %}
+ 
+
+  <script type="text/javascript">
+    $(document).on('submit','#msg-form',function(e)
+                   {
+      e.preventDefault();
+      $.ajax({
+        type:'POST',
+        url:'/',
+        data:{
+          msg:$("#msg").val()
+        },
+        success:function()
+        {
+        	msg = $("#msg").val()
+          $("#log").append("<p><span>{{ data.uname }} : </span>"+msg+"</p>");
+
+          $.get(`${window.origin}/api?msg=${msg}&name={{data.pname}}`, function(data){
+          	$("#log").append("<p><span>{{ data.pname }} : </span>"+data+"</p>");
+            $('#log').scrollTop($("#log")[0].scrollHeight)
+          	});
+              $("#msg").val('')
+          
+        }
+      })
+    });
+      
+  
+  </script>
+  <style type="text/css">
+    #log{
+      width:100%;
+      height: 80%;
+      position: fixed;
+      z-index: 0;
+      overflow: auto;
+    }
+    #sub{
+      z-index: 1;
+    }
+    #msg{
+      background: #1e1e1f;
+      color: #4f4f52;
+    }
+  </style>
+{% endblock %}
